@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Http;
 
 using eApi.Domain.Integrations.eBay;
 
 using eBay.Service.Core.Sdk;
 using eBay.Service.Call;
+using eBay.Service.Core.Soap;
 
 namespace eApi.Controllers
 {

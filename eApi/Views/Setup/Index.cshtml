@@ -1,10 +1,38 @@
 ﻿
-@model eBay.Service.Core.Soap.NotificationEnableTypeCollection
+@using eBay.Service.Core.Soap
+@using eApi.Infrastructure.HTML;
+@model NotificationEnableTypeCollection
 
 @{
     ViewBag.Title = "Setup Index";
 }
 
+<div class="row">
+    <div class="col-xs-12">
+        <a data-toggle="collapse" data-target="#addEvent">Add Notification Preference</a>
+    </div>
+</div>
+<div id="addEvent" class="row collapse">
+    <form method="post" action="Setup/Notification">
+        <div class="form-group">
+            @Html.Label("Notification Event", new { @class = "col-xs-12 control-label" })
+            <div class="col-xs-12">
+                @Html.DropDownList("NotificationEvent", Enum.GetNames(typeof(NotificationEventTypeCodeType)).Select(x => new SelectListItem() { Text = x, Value = x }).ToList(), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Enable/Disable", new { @class = "col-xs-12 control-label" })
+            <div class="col-xs-12">
+                @Html.DropDownList("NotificationEnable", Enum.GetNames(typeof(EnableCodeType)).Select(x => new SelectListItem() { Text = x, Value = x }).ToList(), new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-12">
+                <button type="submit" class="btn btn-primary">Set</button>
+            </div>
+        </div>
+    </form>
+</div>
 <p>
     <table class="table">
         <tr>
@@ -12,7 +40,7 @@
             <th>Event Enable</th>
         </tr>
 
-        @foreach(eBay.Service.Core.Soap.NotificationEnableType n in Model)
+        @foreach (eBay.Service.Core.Soap.NotificationEnableType n in Model)
         {
             <tr>
                 <td>

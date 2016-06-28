@@ -29,7 +29,7 @@ namespace eApi.Controllers
         // GET: Home
         public ActionResult Index()
         { 
-            GetNotificationPreferencesCall call1 = new GetNotificationPreferencesCall(ebayContext);
+            /*GetNotificationPreferencesCall call1 = new GetNotificationPreferencesCall(ebayContext);
             call1.PreferenceLevel = NotificationRoleCodeType.Application;
 
             call1.Execute();
@@ -51,7 +51,7 @@ namespace eApi.Controllers
                 EventEnable = EnableCodeType.Enable
             });
 
-            call.Execute();
+            call.Execute();*/
 
             return View();
         }
