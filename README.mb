@@ -1,0 +1,5 @@
+eAPI
+
+Frontend ASP.NET Web API which takes Platform Notifications from eBay and pushes them to a SQL Entity Databse
+
+Initial Commit

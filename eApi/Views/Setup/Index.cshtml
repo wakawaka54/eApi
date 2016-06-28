@@ -1,0 +1,29 @@
+﻿
+@model eBay.Service.Core.Soap.NotificationEnableTypeCollection
+
+@{
+    ViewBag.Title = "Setup Index";
+}
+
+<p>
+    <table class="table">
+        <tr>
+            <th>Event Type</th>
+            <th>Event Enable</th>
+        </tr>
+
+        @foreach(eBay.Service.Core.Soap.NotificationEnableType n in Model)
+        {
+            <tr>
+                <td>
+                    @n.EventType
+                </td>
+                <td>
+                    @n.EventEnable
+                </td>
+            </tr>
+        }
+
+    </table>
+</p>
+
