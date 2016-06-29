@@ -1,0 +1,23 @@
+﻿@using eBay.Service.Core.Soap
+@using eApi.Infrastructure.HTML;
+@model NotificationEnableTypeCollection
+
+<table class="table col-xs-12">
+    <tr>
+        <th>Event Type</th>
+        <th>Event Enable</th>
+    </tr>
+
+    @foreach (eBay.Service.Core.Soap.NotificationEnableType n in Model)
+    {
+        <tr>
+            <td>
+                @n.EventType
+            </td>
+            <td>
+                @n.EventEnable
+            </td>
+        </tr>
+    }
+
+</table>

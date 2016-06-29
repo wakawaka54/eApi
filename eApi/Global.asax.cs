@@ -19,7 +19,6 @@ namespace eApi
         {
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
-            GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             DependencyResolver.SetResolver(new eApi.Infrastructure.NinjectDependencyResolver(new Ninject.StandardKernel()));

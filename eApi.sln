@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eApi", "eApi\eApi.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eApi.Tests", "eApi.Tests\eApi.Tests.csproj", "{87243622-463E-46FA-B862-6054F40F4984}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{44D35241-70A4-4BFA-A9F5-D007F3285D2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{87243622-463E-46FA-B862-6054F40F4984}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87243622-463E-46FA-B862-6054F40F4984}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87243622-463E-46FA-B862-6054F40F4984}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44D35241-70A4-4BFA-A9F5-D007F3285D2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44D35241-70A4-4BFA-A9F5-D007F3285D2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44D35241-70A4-4BFA-A9F5-D007F3285D2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44D35241-70A4-4BFA-A9F5-D007F3285D2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

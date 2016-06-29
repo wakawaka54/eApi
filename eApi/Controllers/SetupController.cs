@@ -25,11 +25,16 @@ namespace eApi.Controllers
         // GET: Setup
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult ActiveNotifications()
+        {
             GetNotificationPreferencesCall call = new GetNotificationPreferencesCall(context);
             call.PreferenceLevel = eBay.Service.Core.Soap.NotificationRoleCodeType.User;
             call.Execute();
 
-            return View(call.UserDeliveryPreferenceList);
+            return PartialView(call.UserDeliveryPreferenceList);
         }
     }
 }

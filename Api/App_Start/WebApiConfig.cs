@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace eApi
+using System.Web.Http.Cors;
+
+namespace Api
 {
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+
+            var cors = new EnableCorsAttribute("http://localhost:55479/", "*", "*");
+            config.EnableCors();
 
             // Web API routes
             config.MapHttpAttributeRoutes();

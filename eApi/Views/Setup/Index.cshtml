@@ -1,7 +1,5 @@
-﻿
-@using eBay.Service.Core.Soap
+﻿@using eBay.Service.Core.Soap
 @using eApi.Infrastructure.HTML;
-@model NotificationEnableTypeCollection
 
 @{
     ViewBag.Title = "Setup Index";
@@ -13,7 +11,7 @@
     </div>
 </div>
 <div id="addEvent" class="row collapse">
-    <form method="post" action="Setup/Notification">
+    <form id="ajax_addEvent" method="post" action="http://localhost:50659/api/notification">
         <div class="form-group">
             @Html.Label("Notification Event", new { @class = "col-xs-12 control-label" })
             <div class="col-xs-12">
@@ -28,30 +26,55 @@
         </div>
         <div class="form-group">
             <div class="col-xs-12">
-                <button type="submit" class="btn btn-primary">Set</button>
+                <button id="ajax_addEvent-submit" type="submit" class="btn btn-primary">Set</button>
             </div>
         </div>
     </form>
 </div>
-<p>
-    <table class="table">
-        <tr>
-            <th>Event Type</th>
-            <th>Event Enable</th>
-        </tr>
+<div class="row">
+    @Html.Action("ActiveNotifications")
+</div>
 
-        @foreach (eBay.Service.Core.Soap.NotificationEnableType n in Model)
-        {
-            <tr>
-                <td>
-                    @n.EventType
-                </td>
-                <td>
-                    @n.EventEnable
-                </td>
-            </tr>
-        }
+<script>
+    $(document).ready(addEventFormInit);
 
-    </table>
-</p>
 
+    function addEventFormInit() {
+        $('#ajax_addEvent').submit(onFormSubmit)
+    }
+
+    function onFormSubmit(event) {
+        var formData = {
+            'notificationEvent': $('#NotificationEvent').val(),
+            'notificationEnable': $('#NotificationEnable').val()
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: $('#ajax_addEvent').attr('action'),
+            data: formData,
+            dataType: 'html'
+        })
+        .done(onAjaxDone)
+        .error(handleAjaxError);
+
+        var loadingIcon = '<span id="loading-wrapper"><i class="fa fa-spinner fa-spin fa-fw"></i><span class="sr-only">Loading...</span></span>';
+
+        $('#ajax_addEvent-submit').after(loadingIcon);
+
+        event.preventDefault();
+    }
+
+    function onAjaxDone(data) {
+        window.location.replace("/setup/index");
+    }
+
+    function handleAjaxError(jqXHR, textStatus, errorThrown) {
+        $('#loading-wrapper').remove();
+
+        var errorMessage = '<div class="alert alert-danger"><strong>Something was wrong with your request! Try again!</strong></div>';
+
+        $('#ajax_addEvent').before(errorMessage);
+        $('.alert, .alert-danger').fadeOut(3000);
+    }
+</script>
