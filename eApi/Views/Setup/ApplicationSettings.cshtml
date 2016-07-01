@@ -1,0 +1,27 @@
+﻿@using eBay.Service.Core.Soap
+@using eApi.Infrastructure.HTML;
+@model ApplicationDeliveryPreferencesType
+
+<div class="row">
+    <ul class="list-group">
+        @{ 
+            var createListItem = new Func<bool, string, string, string>((enable, name, value) =>
+            {
+                var nameLabel = Html.Label(name, new { @class = "col-xs-6" });
+                var valueLabel = Html.Label(value, new { @class = "col-xs-6" });
+
+                return "<li class=\"list-group-item\">" + nameLabel.ToHtmlString() + valueLabel.ToHtmlString() + "</li>";
+            });
+
+            var propertyList = new List<string>() { "AlertEmail", "AlertEnable", "ApplicationEnable", "ApplicationURL" };
+
+            foreach(System.Reflection.PropertyInfo info in Model.GetType().GetProperties())
+            {
+                if(propertyList.Contains(info.Name))
+                {
+                    @Html.Raw(createListItem(true, info.Name, info.GetValue(Model).ToString()));
+                }
+            }
+        }
+    </ul>
+</div>

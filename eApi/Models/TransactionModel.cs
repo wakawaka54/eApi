@@ -11,8 +11,9 @@ namespace eApi.Models
     {
         //public DateTime Timestamp { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
         [Key]
-        public string TransactionID { get; set; }
         public string ItemID { get; set; }
         public string OrderID { get; set; }
         public int Quantity { get; set; }

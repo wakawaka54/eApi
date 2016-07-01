@@ -192,6 +192,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SetupController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Domain\eDbContext.cs" />
     <Compile Include="Domain\Integrations\eBay\eBayApi.cs" />
     <Compile Include="Domain\ITransactionRepository.cs" />
@@ -212,6 +213,8 @@
     </Content>
     <Content Include="scripts\jquery-1.9.1.min.map" />
     <Content Include="Views\Setup\ActiveNotifications.cshtml" />
+    <Content Include="Views\Setup\ApplicationSettings.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

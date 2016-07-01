@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Http;
+using System.Threading.Tasks;
 
 using eApi.Domain.Integrations.eBay;
 
@@ -16,10 +17,18 @@ namespace eApi.Controllers
     public class SetupController : Controller
     {
         ApiContext context;
+        GetNotificationPreferencesCall getNotificationPreferences;
+        Task asyncRequest;
 
         public SetupController(eBayApi api)
         {
             context = api.GetContext();
+
+            getNotificationPreferences = new GetNotificationPreferencesCall(context);
+            getNotificationPreferences.PreferenceLevel = eBay.Service.Core.Soap.NotificationRoleCodeType.User;
+
+            asyncRequest = new Task(getNotificationPreferences.Execute);
+            asyncRequest.Start();
         }
 
         // GET: Setup
@@ -30,11 +39,14 @@ namespace eApi.Controllers
 
         public ActionResult ActiveNotifications()
         {
-            GetNotificationPreferencesCall call = new GetNotificationPreferencesCall(context);
-            call.PreferenceLevel = eBay.Service.Core.Soap.NotificationRoleCodeType.User;
-            call.Execute();
+            asyncRequest.Wait();
+            return PartialView(getNotificationPreferences.UserDeliveryPreferenceList);
+        }
 
-            return PartialView(call.UserDeliveryPreferenceList);
+        public ActionResult ApplicationSettings()
+        {
+            asyncRequest.Wait();
+            return PartialView(getNotificationPreferences.ApplicationDeliveryPreferences);
         }
     }
 }

@@ -1,0 +1,47 @@
+﻿@using eApi.Models;
+@model IEnumerable<TransactionModel>
+
+@{
+    ViewBag.Title = "List of Transactions";
+}
+
+<h2>Index</h2>
+
+<table class="table-striped col-xs-12">
+
+    <tr>
+        <th class="col-xs-3">
+            Timestamp
+        </th>
+        <th class="col-xs-3">
+            Order ID
+        </th>
+        <th class="col-xs-3">
+            Item ID
+        </th>
+        <th class="col-xs-3">
+            Quantity
+        </th>
+    </tr>
+
+    @foreach (TransactionModel m in Model)
+    {
+        <tr>
+            <td>
+                @m.RowVersion;
+            </td>
+            <td>
+                @m.OrderID;
+            </td>
+            <td>
+                @m.ItemID;
+            </td>
+            <td>
+                @m.Quantity;
+            </td>
+        </tr>
+    }
+
+</table>
+
+
